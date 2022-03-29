@@ -6,5 +6,6 @@ This Readme Contains the Sturcture of this Repository and is continuously adapte
 # Folder Structure
 
 ## Webscraper
--- Page One
+-- Page One\
 -- Page Two
+
