@@ -27,13 +27,13 @@ print("Finished dropping table (if existed)")
 
 
 # Create a table
-cursor.execute("CREATE TABLE footballdata (id serial PRIMARY KEY, Div VARCHAR(30), Date VARCHAR(30), Time VARCHAR(30), HomeTeam VARCHAR(30), AwayTeam VARCHAR(30), FTHG NUMERIC, FTAG NUMERIC, FTR VARCHAR(30), HTHG NUMERIC, HTAG NUMERIC, HTR VARCHAR(30), HS NUMERIC, ASAS NUMERIC, HST NUMERIC, AST NUMERIC, HF NUMERIC, AF NUMERIC, HC NUMERIC, AC NUMERIC, HY NUMERIC, AY NUMERIC, HR NUMERIC, AR NUMERIC);")
+cursor.execute("CREATE TABLE footballdata (id serial PRIMARY KEY, Div VARCHAR(30), Date VARCHAR(30), HomeTeam VARCHAR(30), AwayTeam VARCHAR(30), FTHG NUMERIC, FTAG NUMERIC, FTR VARCHAR(30), HTHG NUMERIC, HTAG NUMERIC, HTR VARCHAR(30), HS NUMERIC, ASAS NUMERIC, HST NUMERIC, AST NUMERIC, HF NUMERIC, AF NUMERIC, HC NUMERIC, AC NUMERIC, HY NUMERIC, AY NUMERIC, HR NUMERIC, AR NUMERIC);")
 print("Finished creating table")
 
 i = 0 
 #Insert Dataframe into SQL Server:
 for index, row in new_df.iterrows():
-     cursor.execute("INSERT INTO footballdata (Div, Date, Time , HomeTeam, AwayTeam, FTHG, FTAG,FTR,HTHG,HTAG,HTR,HS,ASAS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (row['Div'], row['Date'], row['Time'], row['HomeTeam'], row['AwayTeam'], row['FTHG'], row['FTAG'], row['FTR'], row['HTHG'], row['HTAG'], row['HTR'], row['HS'], row['ASAS'], row['HST'], row['AST'], row['HF'], row['AF'], row['HC'], row['AC'], row['HY'], row['AY'], row['HR'], row['AR']))
+     cursor.execute("INSERT INTO footballdata (Div, Date, HomeTeam, AwayTeam, FTHG, FTAG,FTR,HTHG,HTAG,HTR,HS,ASAS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (row['Div'], row['Date'], row['HomeTeam'], row['AwayTeam'], row['FTHG'], row['FTAG'], row['FTR'], row['HTHG'], row['HTAG'], row['HTR'], row['HS'], row['ASAS'], row['HST'], row['AST'], row['HF'], row['AF'], row['HC'], row['AC'], row['HY'], row['AY'], row['HR'], row['AR']))
      #testing version
      #cursor.execute("INSERT INTO footballdata (Date, HomeTeam, AwayTeam, FTHG, FTAG,FTR,HTHG,HTAG,HTR,HS,ASAS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (row['Date'], row['HomeTeam'], row['AwayTeam'], row['FTHG'], row['FTAG'], row['FTR'], row['HTHG'], row['HTAG'], row['HTR'], row['HS'], row['ASAS'], row['HST'], row['AST'], row['HF'], row['AF'], row['HC'], row['AC'], row['HY'], row['AY'], row['HR'], row['AR']))
      
