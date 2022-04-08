@@ -11,12 +11,12 @@ conn = psycopg2.connect(conn_string)
 print("Connection established")
 cursor = conn.cursor()
 # Fetch all rows from table
-cursor.execute("SELECT * FROM inventory;")
+cursor.execute("SELECT * FROM footballdata;")
 rows = cursor.fetchall()
 # Print all rows
 for row in rows:
-    print("Data row = (%s, %s, %s)" %(str(row[0]), str(row[1]), str(row[2])))
-# Cleanup
+    print("Data row = (%s, %s, %s, %s, %s)" %(str(row[0]), str(row[1]), str(row[2]), str(row[3]), str(row[4])))
+# Cleanups
 conn.commit()
 cursor.close()
 conn.close()
