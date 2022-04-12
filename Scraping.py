@@ -1,8 +1,12 @@
+from dataclasses import dataclass
+from datetime import datetime
+from re import U
 import time
 from selenium import webdriver
 import pandas as pd
+import requests
+from bs4 import BeautifulSoup
 
-url = r"https://www.wunderground.com/history/daily/EDDH/date/2010-9-25"
 f = "football-data/clean.csv"
 
 date_list = []
@@ -18,13 +22,29 @@ def dates():
     global date_list
     date_list = new_df['Date'].to_list()
 
-dates()
+    date_list = [datetime.strptime(date, "%d/%m/%Y") for date in date_list]
+    date_list = [date.strftime("%Y-%m-%d") for date in date_list]
 
-def scraping ():
-    path = r"C:\Users\maxbl\Downloads\chromedriver_win32\chromedriver.exe"
-    driver = webdriver.Chrome(path)
-    driver.get(url)
-    time.sleep(4)
-    driver.quit()
+#dates()
 
-scraping()
+
+weather ="https://www.weatherapi.com/docs/"
+#request try
+
+req_html = requests.get(url)
+html_content = req_html.content
+soup = BeautifulSoup(html_content, 'html.parser')
+text = soup.find_all(text = True)
+print(text)
+
+#selenium try
+# def scraping (url):
+#     path = r"C:\Users\maxbl\Downloads\chromedriver_win32\chromedriver.exe"
+#     driver = webdriver.Chrome(path)
+#     driver.get(url)
+#     time.sleep(4)
+
+
+# for i in date_list:
+#     url = f"https://www.wunderground.com/history/daily/EDDH/date/{i}"
+#     scraping(url)
