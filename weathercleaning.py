@@ -10,11 +10,8 @@ print(df.head())
 
 
 #Date Umwandlung funktioniert noch nicht
-df['MESS_DATUM'] = pd.to_datetime(df['MESS_DATUM'])
+df['MESS_DATUM'] = pd.to_datetime(df['MESS_DATUM'], format='%Y%m%d')
 
-#df = df[df['MESS_DATUM'] >= '1999-01-01']
+df = df[df['MESS_DATUM'] >= '1999-01-01']
 
-print(df.head())
-
-
-
+print(df.dtypes)
