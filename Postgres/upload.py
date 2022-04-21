@@ -45,6 +45,8 @@ def footballdata():
 
      print("Finished inserting into table")
 
+footballdata()
+
 # Clean up
 conn.commit()
 cursor.close()

@@ -1,10 +1,15 @@
 import pandas as pd
+import os
 
 #This File is just necessary if there are any csv files to merge
 
-#file_list = ["football-data/D2.csv", "football-data/D2-2.csv", "football-data/D2-3.csv", "football-data/D2-4.csv", "football-data/D2-5.csv"]
+#file_list = ["football-data/D2-5.csv","football-data/D2-4.csv","football-data/D2-3.csv","football-data/D2-2.csv","football-data/D2.csv"]
 
-file_list = ["football-data/D2-5.csv","football-data/D2-4.csv","football-data/D2-3.csv","football-data/D2-2.csv","football-data/D2.csv"]
+file_list = [] 
+for i in os.listdir(r"football-data"):
+    if i.endswith(".csv"):
+        i = "football-data/" + i
+        file_list.append(i)
 
 
 def merging():
