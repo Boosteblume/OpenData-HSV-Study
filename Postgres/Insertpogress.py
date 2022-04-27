@@ -1,4 +1,4 @@
-import psycopg2
+Insertpogress.pyimport psycopg2
 # Update connection string information 
 host = "studyserverhh.postgres.database.azure.com"
 dbname = "postgres"
@@ -25,3 +25,10 @@ print("Inserted 3 rows of data")
 conn.commit()
 cursor.close()
 conn.close()
+
+
+connection = psycopg2.connect('host={0} user={1} dbname={2} password={3} sslmode={4}').format(username=username,
+                                                                                              password=password,
+                                                                                              host=host,
+                                                                                              db_name=db_name,
+                                                                                              sslmode=sslmode)
