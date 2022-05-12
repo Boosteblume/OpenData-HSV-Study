@@ -1,11 +1,9 @@
-from dataclasses import dataclass
 from datetime import datetime
-from re import U
 import time
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 import pandas as pd
-import requests
-from bs4 import BeautifulSoup
+
 
 f = "football-data/clean.csv"
 
@@ -27,24 +25,27 @@ def dates():
 
 #dates()
 
+#chromedriver location
+path = r"C:\Users\maxbl\Downloads\chromedriver_win32\chromedriver.exe"
 
-weather ="https://www.weatherapi.com/docs/"
-#request try
-
-req_html = requests.get(url)
-html_content = req_html.content
-soup = BeautifulSoup(html_content, 'html.parser')
-text = soup.find_all(text = True)
-print(text)
+#target of the document
+url = "https://www.football-data.co.uk/germanym.php"
+element = "/html/body/table[5]/tbody/tr[2]/td[3]/a[3]"
 
 #selenium try
-# def scraping (url):
-#     path = r"C:\Users\maxbl\Downloads\chromedriver_win32\chromedriver.exe"
-#     driver = webdriver.Chrome(path)
-#     driver.get(url)
-#     time.sleep(4)
+def scraping (path, url, element):
 
+    options = webdriver.ChromeOptions()
+    prefs = {"download.default_directory": "/Users/max/Desktop/OpenData-HSV-Study/webscraping"}
+    options.add_experimental_option("prefs", prefs)
+    driver = webdriver.Chrome(path, chrome_options = options)
 
-# for i in date_list:
-#     url = f"https://www.wunderground.com/history/daily/EDDH/date/{i}"
-#     scraping(url)
+    driver.get(url)
+    time.sleep(2)
+    driver.find_element_by_xpath(element).click()
+
+    time.sleep(5)
+    driver.quit()
+
+scraping(url)
+

@@ -13,7 +13,7 @@ def read():
     new_df = ham_all[ham_all.columns[0:22]]
     row_1=new_df.iloc[0]
 
-    print(row_1)
+    print(new_df)
 
 
 read()
