@@ -28,15 +28,6 @@ import os
 
 # merging()
 
-# df = pd.read_csv("football-data/D2.csv", parse_dates=['Date'])
-# print(df.info())
-# df.fillna(0, inplace=True)
-# #df['Date_conv'] = pd.to_datetime(df['Date'], format="%d/%m/%Y")
-# #df.sort_values(by="Date")
-
-# df.to_csv("football-data/test.csv", index=False)
-
-# #print(df[['Date', 'Date_conv']])
 
 file_list = []
 file_list_d1 = [] 
