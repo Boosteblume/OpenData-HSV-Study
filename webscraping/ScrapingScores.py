@@ -1,4 +1,5 @@
 from datetime import datetime
+from operator import ne
 import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -7,23 +8,6 @@ import pandas as pd
 
 f = "football-data/clean.csv"
 
-date_list = []
-
-def dates():
-    df = pd.read_csv(f)
-
-    ham_all = df.loc[(df['HomeTeam'] == "Hamburg") | (df['AwayTeam'] == "Hamburg")]
-    ham_all.fillna(0, inplace = True)
-
-    new_df = ham_all[ham_all.columns[0:22]]
-
-    global date_list
-    date_list = new_df['Date'].to_list()
-
-    date_list = [datetime.strptime(date, "%d/%m/%Y") for date in date_list]
-    date_list = [date.strftime("%Y-%m-%d") for date in date_list]
-
-#dates()
 
 #chromedriver location
 path = r"C:\Users\maxbl\Downloads\chromedriver_win32\chromedriver.exe"
@@ -33,7 +17,7 @@ url = "https://www.football-data.co.uk/germanym.php"
 element = "/html/body/table[5]/tbody/tr[2]/td[3]/a[3]"
 
 #selenium try
-def scraping (path, url, element):
+def scraping(path, url, element):
 
     options = webdriver.ChromeOptions()
     prefs = {"download.default_directory": "/Users/max/Desktop/OpenData-HSV-Study/webscraping"}
@@ -47,5 +31,21 @@ def scraping (path, url, element):
     time.sleep(5)
     driver.quit()
 
-scraping(url)
+#scraping(url)
 
+old_path = "football-data/clean.csv"
+new_path = "football-data/test.csv"
+
+def comparing(old_path, new_path):
+
+    df_old = pd.read_csv(old_path)
+    df_new = pd.read_csv(new_path)
+
+    print(df_new[~df_new.isin(df_old)])
+    # print(df_old.head())
+    # print(df_new.head())
+    print(len(df_old.index))
+    print(len(df_new.index))
+
+
+comparing(old_path, new_path)

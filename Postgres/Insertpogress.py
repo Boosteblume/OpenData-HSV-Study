@@ -1,4 +1,4 @@
-Insertpogress.pyimport psycopg2
+import psycopg2
 # Update connection string information 
 host = "studyserverhh.postgres.database.azure.com"
 dbname = "postgres"
