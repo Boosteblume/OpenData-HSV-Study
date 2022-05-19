@@ -67,7 +67,6 @@ def merging(file_list):
 
     end_df.to_csv(f"football-data/clean{i}.csv", index=False) 
 
-    print(end_df.head())
 
 merging(file_list_d1)
 merging(file_list_d2)
@@ -76,4 +75,4 @@ df1 = pd.read_csv("football-data/clean1.csv")
 df2 = pd.read_csv("football-data/clean2.csv")
 dfl = [df1, df2]
 df = pd.concat(dfl)
-df.to_csv("football-data/clean.csv") 
+df.to_csv("football-data/test.csv") 

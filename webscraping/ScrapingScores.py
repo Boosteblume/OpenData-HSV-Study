@@ -10,11 +10,11 @@ f = "football-data/clean.csv"
 
 
 #chromedriver location
-path = r"C:\Users\maxbl\Downloads\chromedriver_win32\chromedriver.exe"
+# path = r"C:\Users\maxbl\Downloads\chromedriver_win32\chromedriver.exe"
 
-#target of the document
-url = "https://www.football-data.co.uk/germanym.php"
-element = "/html/body/table[5]/tbody/tr[2]/td[3]/a[3]"
+# #target of the document
+# url = "https://www.football-data.co.uk/germanym.php"
+# element = "/html/body/table[5]/tbody/tr[2]/td[3]/a[3]"
 
 #selenium try
 def scraping(path, url, element):
@@ -35,17 +35,13 @@ def scraping(path, url, element):
 
 old_path = "football-data/clean.csv"
 new_path = "football-data/test.csv"
+update_path = "football-data/update.csv"
 
-def comparing(old_path, new_path):
+with open(old_path, 'r') as t1, open(new_path, 'r') as t2:
+    fileone = t1.readlines()
+    filetwo = t2.readlines()
 
-    df_old = pd.read_csv(old_path)
-    df_new = pd.read_csv(new_path)
-
-    print(df_new[~df_new.isin(df_old)])
-    # print(df_old.head())
-    # print(df_new.head())
-    print(len(df_old.index))
-    print(len(df_new.index))
-
-
-comparing(old_path, new_path)
+with open(update_path, 'w') as outFile:
+    for line in filetwo:
+        if line not in fileone:
+            outFile.write(line)
