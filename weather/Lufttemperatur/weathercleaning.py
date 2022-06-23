@@ -70,7 +70,7 @@ def temperatur():
 
      print("Finished inserting into table")
 
-temperatur()
+#temperatur()
 
 
 

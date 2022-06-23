@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 file_list = [] 
-for i in os.listdir(r"weather\Niederschlag"):
+for i in os.listdir(r"weather/Niederschlag"):
     if i.endswith(".txt"):
         i = "weather/Niederschlag/" + i
         file_list.append(i)

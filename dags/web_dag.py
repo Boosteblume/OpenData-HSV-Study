@@ -5,6 +5,7 @@ from airflow import DAG
 from airflow.models import Variable
 from airflow.operators.python import PythonOperator
 import random
+from webscraping import ScrapingScores
 
 def data_test():
 
@@ -17,12 +18,11 @@ def data_test():
     conn = psycopg2.connect(conn_string)
 
     cursor = conn.cursor()
-    # Drop previous table of same name if one exists
-    cursor.execute("DROP TABLE IF EXISTS inventory;")
-    print("Finished dropping table (if existed)")
-    # Create a table
-    cursor.execute("CREATE TABLE inventory (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);")
-    print("Finished creating table")
+
+    # for index, row in new_df.iterrows():
+    #       cursor.execute("INSERT INTO footballdata (Div, Date, HomeTeam, AwayTeam, FTHG, FTAG,FTR,HTHG,HTAG,HTR,HS,ASAS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (row['Div'], row['Date'], row['HomeTeam'], row['AwayTeam'], row['FTHG'], row['FTAG'], row['FTR'], row['HTHG'], row['HTAG'], row['HTR'], row['HS'], row['ASAS'], row['HST'], row['AST'], row['HF'], row['AF'], row['HC'], row['AC'], row['HY'], row['AY'], row['HR'], row['AR']))
+
+
     # Insert some data into the table
     b = random.randint(0, 200)
     o = random.randint(0, 200)
