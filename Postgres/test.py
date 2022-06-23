@@ -6,6 +6,7 @@ from airflow import DAG
 from airflow.models import Variable
 from airflow.operators.python import PythonOperator
 
+
 def data_test():
 
     host = Variable.get("host")

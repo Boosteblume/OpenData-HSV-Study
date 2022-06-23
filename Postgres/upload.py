@@ -1,10 +1,12 @@
 import psycopg2
 import pandas as pd
+from configs import passwords
+
 # insert data from csv file into dataframe.
 f = "football-data/clean.csv"
 df = pd.read_csv(f)
-
-ham_all = df.loc[(df['HomeTeam'] == "Hamburg") | (df['AwayTeam'] == "Hamburg")]
+ham_all = df
+#ham_all = df.loc[(df['HomeTeam'] == "Hamburg") | (df['AwayTeam'] == "Hamburg")]
 ham_all.fillna(0, inplace = True)
 
 new_df = ham_all[ham_all.columns[0:23]]
@@ -14,7 +16,7 @@ print(new_df.head())
 host = "studyserverhh.postgres.database.azure.com"
 dbname = "postgres"
 user = "Footballstudy"
-password = "Abstieg2022"
+password = passwords.postgres_password
 sslmode = "require"
 # Construct connection string
 conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(host, user, dbname, password, sslmode)

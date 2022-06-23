@@ -1,6 +1,7 @@
 import psycopg2
 import pandas as pd
 from psycopg2 import OperationalError
+from configs import passwords
 
 class Connection:
 
@@ -12,7 +13,7 @@ class Connection:
                    __host = "studyserverhh.postgres.database.azure.com",
                    __dbname = "postgres",
                    __user = "Footballstudy",
-                   __password = "Abstieg2022",
+                   __password = passwords.postgres_password,
                    __sslmode = "require"
               )
               self.cursor = self.connection.cursor()
