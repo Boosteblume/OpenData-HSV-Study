@@ -1,13 +1,8 @@
 import json
 import requests
-from IPython.display import HTML
+import pandas as pd
 
 from configs import passwords
-
-'''
-This sample makes a call to the Bing Web Search API with a query and returns relevant web search.
-Documentation: https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/overview
-'''
 
 # Add your Bing Search V7 subscription key and endpoint to your environment variables.
 subscription_key = passwords.api_key
@@ -19,22 +14,40 @@ query = "HSV"
 
 # Construct a request
 mkt = 'de-DE'
-params = { 'q': query, 'mkt': mkt , 'textDecorations': True, 'textFormat': "HTML"}
+count = 99
+params = { 'q': query, 'mkt': mkt, 'count': count, 'textDecorations': True, 'textFormat': "HTML"}
 headers = { 'Ocp-Apim-Subscription-Key': subscription_key }
 
-#curl -H "Ocp-Apim-Subscription-Key: <yourkeygoeshere>" https://api.bing.microsoft.com/v7.0/news/trendingtopics
+
+result_list = []
+
 # Call the API
 print("test")
 try:
     response = requests.get(search_url, headers=headers, params=params)
     response.raise_for_status()
-    search_results = json.dumps(response.json())
-    #descriptions = [article["description"] for article in search_results["value"]]
+    search_result = response.json()
 
-    print(search_results)
-
-    print("nope")
+    for article in search_result['value']:
+        #print(article["description"])
+        result_list.append(article["description"])
+    # description = [article["description"] for article  in search_result['value']]
+    # print(description)
 
 except Exception as ex:
-    print("Fuck!")
     raise ex
+
+x = result_list[0]
+
+print(result_list[0])
+
+def check_for_words(search):
+    for item in result_list:
+        for word in search:
+            if word in item:
+                print(word)
+
+search_list = ["HSV", "Hamburger"]
+
+check_for_words(search_list)
+
