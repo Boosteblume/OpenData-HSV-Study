@@ -2,11 +2,12 @@
 import psycopg2
 import pandas as pd
 import os
+import configs.passwords
 
 file_list = [] 
-for i in os.listdir(r"weather/Niederschlag"):
+for i in os.listdir(r"C:\Users\maxbl\OneDrive\Desktop\OpenData-HSV-Study\weather\Niederschlag"):
     if i.endswith(".txt"):
-        i = "weather/Niederschlag/" + i
+        i = "C:/Users/maxbl/OneDrive/Desktop/OpenData-HSV-Study/weather/Niederschlag/" + i
         file_list.append(i)
 
 
@@ -20,7 +21,7 @@ end_df = end_df[end_df.columns[0:10]]
 end_df = end_df[end_df['Jahr'] > 2010]
 end_df = end_df.rename(columns={'Niedersachsen/Hamburg/Bremen':'Hamburg'})
 
-end_df.to_csv("weather/clean.csv", index=False) 
+#end_df.to_csv("weather/clean.csv", index=False)
 
 print("Dataframe columns:", end_df.columns)
 
@@ -30,7 +31,7 @@ print("Dataframe columns:", end_df.columns)
 host = "studyserverhh.postgres.database.azure.com"
 dbname = "postgres"
 user = "Footballstudy"
-password = "Abstieg2022"
+password = configs.passwords.postgres_password
 sslmode = "require"
 # Construct connection string
 conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(host, user, dbname, password, sslmode)
