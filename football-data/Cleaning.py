@@ -2,7 +2,7 @@ import pandas as pd
 
 #This File puts all the values in the dataframe and prints all games where Hamburg played
 
-f = "football-data/clean.csv"
+f = "football-data/clean2.csv"
 
 def read():
     df = pd.read_csv(f)

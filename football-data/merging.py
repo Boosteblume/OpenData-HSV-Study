@@ -35,15 +35,14 @@ file_list_d2 = []
 
 for i in os.listdir(r"football-data"):
     if i.endswith(".csv"):
-        i = "football-data/" + i
+        print(i)
 
-        #file_list.append(i)
 
 #if it would be necessary to split
         if i.startswith("football-data/D1"):
             file_list_d1.append(i)
-        elif i.startswith("football-data/D2"):
-            file_list_d2.append(i)
+        elif i.startswith("D2"):
+            file_list_d2.append("football-data/" + i)
 
 #
 #   NOT DONE YET DATE STILL FUCKED UP
@@ -68,11 +67,11 @@ def merging(file_list):
     end_df.to_csv(f"football-data/clean{i}.csv", index=False) 
 
 
-merging(file_list_d1)
+#merging(file_list_d1)
 merging(file_list_d2)
 
-df1 = pd.read_csv("football-data/clean1.csv")
-df2 = pd.read_csv("football-data/clean2.csv")
-dfl = [df1, df2]
-df = pd.concat(dfl)
-df.to_csv("football-data/test.csv") 
+# df1 = pd.read_csv("football-data/clean1.csv")
+# df2 = pd.read_csv("football-data/clean2.csv")
+# dfl = [df1, df2]
+# df = pd.concat(dfl)
+# df.to_csv("football-data/result.csv")

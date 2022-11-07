@@ -1,9 +1,9 @@
 import psycopg2
 import pandas as pd
-from configs import passwords
+#from configs import passwords
 
 # insert data from csv file into dataframe.
-f = "football-data/clean.csv"
+f = "football-data/clean2.csv"
 df = pd.read_csv(f)
 ham_all = df
 #ham_all = df.loc[(df['HomeTeam'] == "Hamburg") | (df['AwayTeam'] == "Hamburg")]
@@ -16,7 +16,7 @@ print(new_df.head())
 host = "studyserverhh.postgres.database.azure.com"
 dbname = "postgres"
 user = "Footballstudy"
-password = passwords.postgres_password
+password = "Abstieg2022"
 sslmode = "require"
 # Construct connection string
 conn_string = "host={0} user={1} dbname={2} password={3} sslmode={4}".format(host, user, dbname, password, sslmode)
@@ -31,7 +31,6 @@ def footballdata():
      cursor.execute("DROP TABLE IF EXISTS footballdata;")
      print("Finished dropping table (if existed)")
 
-
      # Create a table
      cursor.execute("CREATE TABLE footballdata (id serial PRIMARY KEY, Div VARCHAR(30), Date VARCHAR(30), HomeTeam VARCHAR(30), AwayTeam VARCHAR(30), FTHG NUMERIC, FTAG NUMERIC, FTR VARCHAR(30), HTHG NUMERIC, HTAG NUMERIC, HTR VARCHAR(30), HS NUMERIC, ASAS NUMERIC, HST NUMERIC, AST NUMERIC, HF NUMERIC, AF NUMERIC, HC NUMERIC, AC NUMERIC, HY NUMERIC, AY NUMERIC, HR NUMERIC, AR NUMERIC);")
      print("Finished creating table")
@@ -40,13 +39,7 @@ def footballdata():
      #Insert Dataframe into SQL Server:
      for index, row in new_df.iterrows():
           cursor.execute("INSERT INTO footballdata (Div, Date, HomeTeam, AwayTeam, FTHG, FTAG,FTR,HTHG,HTAG,HTR,HS,ASAS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (row['Div'], row['Date'], row['HomeTeam'], row['AwayTeam'], row['FTHG'], row['FTAG'], row['FTR'], row['HTHG'], row['HTAG'], row['HTR'], row['HS'], row['ASAS'], row['HST'], row['AST'], row['HF'], row['AF'], row['HC'], row['AC'], row['HY'], row['AY'], row['HR'], row['AR']))
-          #testing version
-          #cursor.execute("INSERT INTO footballdata (Date, HomeTeam, AwayTeam, FTHG, FTAG,FTR,HTHG,HTAG,HTR,HS,ASAS,HST,AST,HF,AF,HC,AC,HY,AY,HR,AR) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);", (row['Date'], row['HomeTeam'], row['AwayTeam'], row['FTHG'], row['FTAG'], row['FTR'], row['HTHG'], row['HTAG'], row['HTR'], row['HS'], row['ASAS'], row['HST'], row['AST'], row['HF'], row['AF'], row['HC'], row['AC'], row['HY'], row['AY'], row['HR'], row['AR']))
-          
-          i = i + 1
-          print(i)
-
-     print("Finished inserting into table")
+          print("Finished inserting into table")
 
 footballdata()
 
